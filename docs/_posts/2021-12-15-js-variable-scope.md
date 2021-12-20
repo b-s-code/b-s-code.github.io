@@ -1,5 +1,7 @@
-﻿
-# Javascript Variable Scope
+﻿---
+title: "JavaScript: Variable Scope"
+tags: javascript scope variables
+---
 
 ## Comparison of the keywords `var` and `let`
 

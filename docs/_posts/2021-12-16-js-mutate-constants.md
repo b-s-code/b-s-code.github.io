@@ -1,4 +1,7 @@
-﻿# Mutation of Constant Variables in JavaScript
+﻿---
+title: "JavaScript: Mutation of Constant Variables"
+tags: javascript constant variables mutate
+---
 
 There are two important things to note about any variable declared with `const` in JavaScript:
 1. it cannot be **re-assigned to**
