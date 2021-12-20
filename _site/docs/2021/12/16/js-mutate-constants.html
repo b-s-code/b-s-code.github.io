@@ -1,0 +1,74 @@
+<p>There are two important things to note about any variable declared with <code class="language-plaintext highlighter-rouge">const</code> in JavaScript:</p>
+<ol>
+  <li>it cannot be <strong>re-assigned to</strong></li>
+  <li>it can be <strong>mutated</strong>, if it is an array or object</li>
+</ol>
+
+<p>To elucidate these nuances, we will see how to change a constant variable’s value from <code class="language-plaintext highlighter-rouge">[1,2,3]</code> to <code class="language-plaintext highlighter-rouge">[4,5,6]</code>.</p>
+
+<h2 id="example-one">Example one</h2>
+
+<p>Let’s try to assign a new value to a constant variable using the assignment operator <code class="language-plaintext highlighter-rouge">=</code>.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
+<span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">];</span>
+</code></pre></div></div>
+<p>The above code will throw a TypeError and JavaScript will complain of “Assignment to constant variable.” and the value of <code class="language-plaintext highlighter-rouge">arr</code> after running the code will still be
+<code class="language-plaintext highlighter-rouge">[1,2,3]</code></p>
+
+<p>As described, variables declared with <code class="language-plaintext highlighter-rouge">const</code> in JavaScript cannot be <strong>re-assigned</strong> to.  But their values can be changed in a different way.  Mutation.</p>
+
+<h2 id="example-two">Example two</h2>
+
+<p>Instead of attempting to re-assign the value of our constant variable itself, let’s <strong>mutate</strong> the value of the variable.  This means we will change the value of the variable <em>in place</em>.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
+
+<span class="c1">//modify first element of arr</span>
+<span class="nx">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="c1">//now the second element</span>
+<span class="nx">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="c1">//and, lastly, the third element</span>
+<span class="nx">arr</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>The value of <code class="language-plaintext highlighter-rouge">arr</code> after running the code will still be
+<code class="language-plaintext highlighter-rouge">[4,5,6]</code>.</p>
+
+<p>This raises some questions…</p>
+<blockquote>
+  <p>We knew all along that we wanted to change the value of the variable <code class="language-plaintext highlighter-rouge">arr</code> from <code class="language-plaintext highlighter-rouge">[1,2,3]</code> to <code class="language-plaintext highlighter-rouge">[4,5,6]</code>.</p>
+
+  <p>Could we have changed <code class="language-plaintext highlighter-rouge">arr</code>’s value while avoiding the tedium of mutating it piece by piece?</p>
+
+  <p>Can’t we just declare <code class="language-plaintext highlighter-rouge">arr</code> again, this time with a new value?</p>
+</blockquote>
+
+<p>The answer…</p>
+<blockquote>
+  <p>No.</p>
+</blockquote>
+
+<h2 id="example-three">Example three</h2>
+
+<p>Let’s try to changed the value of <code class="language-plaintext highlighter-rouge">arr</code> without mutation.  Instead let’s (try to) declare the variable again.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
+<span class="kd">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">];</span>
+</code></pre></div></div>
+
+<p>JavaScript complains that “…‘arr’ has already been declared.”.</p>
+
+<hr />
+<p>So why are constant variables not able to be re-assigned to or re-declared?</p>
+
+<p>Because they are meant to be <em>constant</em>.   Unchanging.  If you need to be able to re-assign or re-declare a variable, consider <code class="language-plaintext highlighter-rouge">let</code> or <code class="language-plaintext highlighter-rouge">var</code>.</p>
+
+<p>But why, then, can the value of a constant variable be changed through mutation?</p>
+
+<p>Arrays and objects are <em>mutable</em> types.  Changeable.  Programmers expect to be able to modify mutable values and this takes precedence over variable constancy.</p>
+
+<h2 id="further-references">Further references</h2>
+
+<p>https://gomakethings.com/immutable-arrays-and-objects-in-vanilla-js/</p>
+

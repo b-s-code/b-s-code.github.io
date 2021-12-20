@@ -1,0 +1,37 @@
+I"ê
+<p>Objects are a mutable type in JavaScript.  An object variable can be modified in place, even if it it was declared with <code class="language-plaintext highlighter-rouge">const</code>.</p>
+
+<h2 id="example">Example</h2>
+<p>If we run</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">myObject</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="na">key1</span><span class="p">:</span> <span class="dl">'</span><span class="s1">value1</span><span class="dl">'</span><span class="p">,</span>
+	<span class="na">key2</span><span class="p">:</span> <span class="dl">'</span><span class="s1">value2</span><span class="dl">'</span>
+<span class="p">};</span>
+
+<span class="nx">myObject</span><span class="p">.</span><span class="nx">key1</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">newValue</span><span class="dl">'</span><span class="p">;</span>
+</code></pre></div></div>
+<p>then the value of the variable <code class="language-plaintext highlighter-rouge">myObject</code> will be
+<code class="language-plaintext highlighter-rouge">{
+	key1: 'newValue',
+	key2: 'value2'
+}</code>.</p>
+
+<p>Sometimes, we want to prevent object mutation.  This can be accomplished with the object method <code class="language-plaintext highlighter-rouge">Object.freeze()</code>.</p>
+
+<h2 id="example-1">Example</h2>
+<p>If we run</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">myObject</span> <span class="o">=</span> <span class="p">{</span>
+	<span class="na">key1</span><span class="p">:</span> <span class="dl">'</span><span class="s1">value1</span><span class="dl">'</span><span class="p">,</span>
+	<span class="na">key2</span><span class="p">:</span> <span class="dl">'</span><span class="s1">value2</span><span class="dl">'</span>
+<span class="p">};</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">freeze</span><span class="p">(</span><span class="nx">myObject</span><span class="p">);</span>
+
+<span class="nx">myObject</span><span class="p">.</span><span class="nx">key1</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">newValue</span><span class="dl">'</span><span class="p">;</span>
+</code></pre></div></div>
+<p>then the value of <code class="language-plaintext highlighter-rouge">myObject</code> will <em>not</em> change when we attempt to mutate it.</p>
+
+<h2 id="further-references">Further references</h2>
+
+<p>https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/es6/prevent-object-mutation</p>
+:ET

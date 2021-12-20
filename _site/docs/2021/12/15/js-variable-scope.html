@@ -1,0 +1,67 @@
+<h2 id="comparison-of-the-keywords-var-and-let">Comparison of the keywords <code class="language-plaintext highlighter-rouge">var</code> and <code class="language-plaintext highlighter-rouge">let</code></h2>
+
+<div align="center"><img height="400px" alt="View through a sniper rifle scope" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Edit_4x_rifle_scope.jpg/671px-Edit_4x_rifle_scope.jpg" /></div>
+<p><br /></p>
+
+<p>When a variable is declared with <code class="language-plaintext highlighter-rouge">let</code>, the value assigned to the variable is assigned only in the scope of the block where the declaration appears (i.e. locally).</p>
+
+<h3 id="example">Example</h3>
+<p>If we run</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let  myVariable  =  5;
+console.log(myVariable);
+
+if (true) {
+let  myVariable  =  10;
+console.log(myVariable);
+}
+
+console.log(myVariable);
+</code></pre></div></div>
+<p>then the console will show</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>5
+10
+5
+</code></pre></div></div>
+<p>By contrast, replacing <code class="language-plaintext highlighter-rouge">let</code>with <code class="language-plaintext highlighter-rouge">var</code> in the above example would display</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>5
+10
+10
+</code></pre></div></div>
+<p>in the console.</p>
+
+<hr />
+<p>When a variable is declared with <code class="language-plaintext highlighter-rouge">var</code> its scope is either</p>
+<ul>
+  <li>global, or</li>
+  <li>local (if and only if the variable is declared inside a function)</li>
+</ul>
+
+<h3 id="example-1">Example</h3>
+
+<p>If we run</p>
+<pre><code class="language-lang-js">var myVariable = 5;
+console.log(myVariable);
+
+function myFunction() {
+	var myVariable = 10;
+	console.log(myVariable);
+}
+
+myFunction();
+console.log(myVariable);
+</code></pre>
+<p>then the console will show</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>5
+10
+5
+</code></pre></div></div>
+<hr />
+<h3 id="further-references">Further references</h3>
+<p>MDN Web Docs
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let</p>
+
+<p>w3schools
+https://www.w3schools.com/js/js_scope.asp</p>
+
+<p>freeCodeCamp
+https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/es6/compare-scopes-of-the-var-and-let-keywords</p>
