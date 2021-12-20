@@ -22,7 +22,6 @@ then the value of the variable `myObject` will be
 	key2: 'value2'
 }`.
 
----
 Sometimes, we want to prevent object mutation.  This can be accomplished with the object method `Object.freeze()`.
 
 ## Example
@@ -39,6 +38,6 @@ myObject.key1 = 'newValue';
 ```
 then the value of `myObject` will *not* change when we attempt to mutate it.
 
-## Further reading
+## Further references
 
 https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/es6/prevent-object-mutation

@@ -6,6 +6,7 @@ tags: javascript scope variables
 ## Comparison of the keywords `var` and `let`
 
 <div align="center"><img height="400px"  alt="View through a sniper rifle scope" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Edit_4x_rifle_scope.jpg/671px-Edit_4x_rifle_scope.jpg"></div>
+<br>
 
 When a variable is declared with `let`, the value assigned to the variable is assigned only in the scope of the block where the declaration appears (i.e. locally). 
 
