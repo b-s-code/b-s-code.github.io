@@ -39,3 +39,8 @@ div.desc {
 h3 {
   margin: 12px 0px 8px 0px;
 }
+
+a {
+  text-decoration: none;
+  color: black;
+}
