@@ -1,0 +1,343 @@
+:root
+{
+    --accent-color: rgb(0, 255, 200);
+    --fg-color: white;
+    --bg-color: #eeeeee;
+}
+
+body
+{
+    font-family: monospace;
+    background-color: var(--bg-color);
+}
+
+div
+{
+    background-color: var(--fg-color);
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.clickable
+{
+    cursor: pointer;
+}
+
+.arrow
+{
+    /* Invisible until hovered over. */
+    color: var(--fg-color);
+    
+    /* Required for vertical centering. */
+    display: grid;
+    align-items: center;
+
+    text-align: center;
+    border: solid var(--fg-color) 1px;
+}
+
+.arrow:hover
+{
+    /* Indicate to user arrows are clickable. */
+    color: blue;
+    
+    /* Required for vertical centering. */
+    display: grid;
+    align-items: center;
+
+    text-align: center;
+    border: solid blue 1px;
+}
+
+.cardContainerAggregate
+{
+    display: grid;
+    text-align: center;
+    grid-template-rows: auto auto auto;
+
+    /* Want card title to be wider than arrows. */
+    grid-template-columns: 10% auto 10%;
+}
+
+.addCardButton
+{
+    /* Indicate to user this div is special. */
+    color: green;
+    
+    text-align: center;
+    border : solid green 1px;
+    
+    /* Don't want button text against edge of button. */
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    
+    /* Width, height and x-position should match the
+       divs which house cards' titles. */
+    width: 80%;
+    height: 50px;
+    margin: auto;
+
+    /* Vertical distance from last card in list
+       should match vert. dist. between cards. */
+    margin-top: 15px;
+}
+
+.addListButton
+{
+    /* Indicate to user this div is special. */
+    color: green;
+    
+    text-align: center;
+    border : solid green 1px;
+    
+    /* Don't want button text against edge of button. */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 50px;
+}
+
+.deleteButton
+{
+    /* Indicate to user this div is special. */
+    color: red;
+    
+    text-align: center;
+    border : solid red 1px;
+
+    /* Don't want button text against edge of button. */
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+
+    /* Actual value not so important.  Just best that 
+       delete buttons all have consistent height. */
+    height: 50px;
+}
+
+.cardCell
+{
+    /* Actual value not so important.  Just best that 
+       cards all have consistent height. */
+    height: 50px;
+
+    /* Want some blank space around card title 
+       for ease of reading. */
+    padding: 5px;
+    
+    border : solid black 1px;
+}
+
+.cardCell:hover
+{
+    /* Actual value not so important.  Just best that 
+       cards all have consistent height. */
+    height: 50px;
+
+    /* Want some blank space around card title 
+       for ease of reading. */
+    padding: 5px;
+    
+    /* Indicate card is clickable. */
+    color : blue;
+    border : solid blue 1px;
+}
+
+/* Plural. */
+.listsContainer
+{
+    display: grid;
+    background-color: var(--bg-color);
+    column-gap: 20px;
+}
+
+/* Singular.*/
+.listTopLevelContainer
+{
+    display: grid;
+    height: fit-content;
+    column-gap: 5px;
+
+    /* Want side columns to be narrow than center column. */
+    grid-template-columns: 1fr 8fr 1fr;
+
+    /* When lists extend vertically beyond viewport,
+       it is important that user can still scroll to
+       the very bottom, without their view of the bottom
+       of the longest list being obscured by the bottom
+       bar. */
+    margin-bottom: 100px;
+    
+    border : solid black 1px;
+    background-color: var(--fg-color);
+}
+
+.listMiddleColumnContainer
+{
+    display: grid;
+    row-gap: 5px;
+    padding: 40px 0px 40px 0px;
+}
+
+.listTopRow
+{
+    display: grid;
+    
+    /* Want delete button to be narrower than title div. */
+    grid-template-columns: 3fr 1fr;
+
+    /* Distance from delete buton to fist card should 
+       equal distance between cards. */
+    margin-bottom: 20px;
+}
+
+.cardTopRowFocused
+{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+.cardContainerFocused
+{
+    display: grid;
+    margin: 50px;
+    padding: 10px;
+    border: solid black 1px;
+    row-gap: 10px;
+}
+
+.cardBackButton
+{
+    /* Required for vertical centering. */
+    display: grid;
+    align-items: center;
+
+    text-align: center;
+    border: solid black 1px;
+}
+
+.cardBackButton:hover
+{
+    /* Indicate to user button is clickable. */
+    color: blue;
+    
+    /* Required for vertical centering. */
+    display: grid;
+    align-items: center;
+
+    text-align: center;
+
+    border: solid blue 1px;
+}
+
+.labelDiv
+{
+    /* Required for vertical centering. */
+    display: grid;
+    align-items: center;
+
+    text-align: center;
+    border: solid black 1px;
+    padding: 10px;
+    height: fit-content;
+}
+
+.labelDiv:hover
+{
+    /* Indicate to user label is clickable. */
+    color: blue;
+    border: solid blue 1px;
+    
+    /* Required for vertical centering. */
+    display: grid;
+    align-items: center;
+
+    text-align: center;
+    
+    padding: 10px;
+    height: fit-content;
+}
+
+.labelContainer
+{
+    display: grid;
+    column-gap: 10px;
+}
+
+.note
+{
+    /* HTML textarea elts unfortunately do not 
+       auto-scale to fit contents.  Allow some room. */
+    height: 50vh;
+}
+
+#buttonsContainer
+{
+    background-color: var(--bg-color);
+    height: 80vh;
+    column-gap: 10px;
+    display: grid;
+
+    /* Display the two buttons side by side. */
+    grid-template-columns: auto auto; 
+}
+
+.welcomeButton
+{
+    /* Required for vertical centering. */
+    display: grid;
+    align-items: center;
+
+    text-align: center;
+    border: solid black 1px;
+    padding: 10px;
+}
+
+.welcomeButton:hover
+{
+    /* Indicate to user buttons are clickable. */
+    color: blue;
+    border: solid blue 1px;
+    
+    /* Required for vertical centering. */
+    display: grid;
+    align-items: center;
+
+    text-align: center;
+    padding: 10px;
+}
+
+.aggregateBottomBar
+{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    height: 60px;
+    width: 100%;
+    border-top: solid black 1px;
+}
+
+.appTitleDiv
+{
+    margin: 5px 0px 0px 10px;
+}
+
+.downloadButton
+{
+    height: 40px;
+    margin: 10px;
+    
+    /* Indicate to user button is clickable. */
+    color: blue;
+    border: solid blue 1px;
+    
+    /* Required for vertical centering. */
+    display: grid;
+    align-items: center;
+
+    text-align: center;
+}
