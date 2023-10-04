@@ -196,15 +196,9 @@ exports.AddCard = AddCard;
 */
 function AddList(board) {
     var resultBoard = cloneDeep(board);
-    var newCardId = resultBoard.cardsTitles.length;
-    var newListId = resultBoard.listsTitles.length;
     var newListPos = resultBoard.listsPositions.length;
-    // New list should come with a filler card.
-    resultBoard.cardsTitles.push(exports.fillerStr);
-    resultBoard.cardsNotes.push(exports.fillerStr);
-    resultBoard.cardsLabels.push([exports.fillerStr]);
     resultBoard.listsTitles.push(exports.fillerStr);
-    resultBoard.listsCards.push([newCardId]);
+    resultBoard.listsCards.push([]);
     resultBoard.listsPositions.push(newListPos);
     return resultBoard;
 }
@@ -538,7 +532,7 @@ function MakeListsContainer() {
     // Need an additional column for list-adding button.
     var numColumns = numLists + 1;
     listsContainer.classList.add("listsContainer");
-    listsContainer.style.gridTemplateColumns = "auto ".repeat(numColumns);
+    listsContainer.style.gridTemplateColumns = "1fr ".repeat(numColumns);
     // Will sort list ids by their intended GUI position,
     // left to right.
     var listIds = boardState.listsTitles.map(function (elt, i) { return i; });
@@ -653,6 +647,30 @@ function MakeCardDiv(id) {
                     appState.guiViewMode = "focused";
                     document.dispatchEvent(OutdatedGUI);
                 });
+                // Make arrows show up, as if they were hovered
+                // upon, when the center cell is hovered upon.
+                cell.addEventListener("mouseover", function () {
+                    var _a, _b;
+                    if (cell.parentElement) {
+                        var siblings = cell.parentElement.children;
+                        for (var i = 0; i < siblings.length; i++) {
+                            if ((_a = siblings.item(i)) === null || _a === void 0 ? void 0 : _a.classList.contains("arrow")) {
+                                (_b = siblings.item(i)) === null || _b === void 0 ? void 0 : _b.classList.add("hoveredArrow");
+                            }
+                        }
+                    }
+                });
+                cell.addEventListener("mouseout", function () {
+                    var _a;
+                    if (cell.parentElement) {
+                        var siblings = cell.parentElement.children;
+                        for (var i = 0; i < siblings.length; i++) {
+                            // Appears unproblematic to call this on the corner
+                            // cells, which don't belong to this class to begin with.
+                            (_a = siblings.item(i)) === null || _a === void 0 ? void 0 : _a.classList.remove("hoveredArrow");
+                        }
+                    }
+                });
                 break;
             // Cells with buttons for moving card.
             case 1:
@@ -766,11 +784,9 @@ function MakeCardTitleDiv(id) {
         var toReplace = document.getElementById("card_title_div");
         var editableArea = document.createElement("input");
         editableArea.value = title;
-        editableArea.addEventListener("keypress", function (event) {
-            if (event.getModifierState("Control") && event.key === "Enter") {
-                boardState = (0, controller_1.RenameCard)(boardState, id, editableArea.value);
-                document.dispatchEvent(OutdatedGUI);
-            }
+        editableArea.addEventListener("focusout", function (event) {
+            boardState = (0, controller_1.RenameCard)(boardState, id, editableArea.value);
+            document.dispatchEvent(OutdatedGUI);
         });
         // Swap title div for input control.
         toReplace === null || toReplace === void 0 ? void 0 : toReplace.replaceWith(editableArea);
@@ -798,11 +814,9 @@ function MakeListTitleDiv(id) {
         var toReplace = document.getElementById(htmlEltId);
         var editableArea = document.createElement("input");
         editableArea.value = title;
-        editableArea.addEventListener("keypress", function (event) {
-            if (event.getModifierState("Control") && event.key === "Enter") {
-                boardState = (0, controller_1.RenameList)(boardState, id, editableArea.value);
-                document.dispatchEvent(OutdatedGUI);
-            }
+        editableArea.addEventListener("focusout", function (event) {
+            boardState = (0, controller_1.RenameList)(boardState, id, editableArea.value);
+            document.dispatchEvent(OutdatedGUI);
         });
         // Swap title div for input control.
         toReplace === null || toReplace === void 0 ? void 0 : toReplace.replaceWith(editableArea);
@@ -821,11 +835,9 @@ function MakeNoteDiv(id) {
     textArea.append(note);
     textArea.classList.add("note");
     // Add interactivity to note.
-    textArea.addEventListener("keypress", function (event) {
-        if (event.getModifierState("Control") && event.key === "Enter") {
-            boardState = (0, controller_1.ChangeCardNotes)(boardState, id, textArea.value);
-            document.dispatchEvent(OutdatedGUI);
-        }
+    textArea.addEventListener("focusout", function (event) {
+        boardState = (0, controller_1.ChangeCardNotes)(boardState, id, textArea.value);
+        document.dispatchEvent(OutdatedGUI);
     });
     return textArea;
 }
@@ -854,14 +866,12 @@ function MakeLabelsDiv(id) {
         var toReplace = document.getElementById("card_labels_div");
         var editableArea = document.createElement("input");
         editableArea.value = labels.join(", ");
-        editableArea.addEventListener("keypress", function (event) {
-            if (event.getModifierState("Control") && event.key === "Enter") {
-                var newLabels = editableArea.value
-                    .split(",")
-                    .map(function (s) { return s.trimStart(); });
-                boardState = (0, controller_1.ChangeCardLabels)(boardState, id, newLabels);
-                document.dispatchEvent(OutdatedGUI);
-            }
+        editableArea.addEventListener("focusout", function (event) {
+            var newLabels = editableArea.value
+                .split(",")
+                .map(function (s) { return s.trimStart(); });
+            boardState = (0, controller_1.ChangeCardLabels)(boardState, id, newLabels);
+            document.dispatchEvent(OutdatedGUI);
         });
         toReplace === null || toReplace === void 0 ? void 0 : toReplace.replaceWith(editableArea);
     });
